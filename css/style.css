@@ -1,0 +1,101 @@
+/* this is for troubleshooting - shows red outline when hover over element
+*:hover {
+  border: 1px dotted red;
+}
+*/
+
+html {
+  /* changes width sizing to include padding & border */
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url('../img/computer-codes-technology-background-15.jpg');
+}
+
+.center {
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+img {
+    display: inline;
+    width: 200px;
+    height: 100px;
+}
+
+#footer {
+  /* full width of parent container */
+    width: 100%;
+    background-color: white;
+    /* this creates a footer attached to bottom of the screen */
+    bottom: 0;
+    position: fixed;
+}
+
+#headers {
+  margin-top: 5%;
+  /* this reduces the width of headers while keeping them centered */
+  /* to use effectively must be removed on small screens */
+ /* width: 60%;
+  margin-left: auto;
+  margin-right: auto;*/
+}
+
+#main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 500px;
+}
+
+.guess {
+  background-color: white;
+  border-radius: 15%;
+  display: inline;
+  font-size: 60px;
+  padding: 0 25px;
+}
+
+#input-parent {
+  margin: 5% auto;
+  position: relative;
+  width: 160px;
+}
+
+#player-input {
+  border-radius: 50%;
+  width: 160px;
+  height: 160px;
+  font-size: 60px;
+}
+
+#submit {
+  border-radius: 50%;
+
+  height: 60px;
+  width: 60px;
+
+  position: absolute;
+  left: 100px;
+  top: 100px;
+}
+
+#headers {
+  background-color: #5BC0DE;
+  border: solid 1px white;
+  border-radius: 20px;
+  color: white;
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 767px) {
+  #footer {
+    display: none;
+  }
+}
+
