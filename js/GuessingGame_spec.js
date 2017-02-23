@@ -1,4 +1,7 @@
-describe("generateWinningNumber function", function() {
+/* eslint-disable no-undef */
+// there will always be undefined functions in the spec file
+
+describe('generateWinningNumber function', function() {
     it('returns a random number between 1 and 100', function() {
         //Math.random returns a decimal from 0 up to but not including 1
         spyOn(Math, 'random').and.returnValue(0.155);
@@ -16,7 +19,7 @@ describe("generateWinningNumber function", function() {
     });
 });
 
-describe("shuffle function", function() {
+describe('shuffle function', function() {
     //Use the fisher-yates Shuffle algorithm
     //Here is a great resource on the algorithm with an animation.  Read all the way to the end!
     //https://bost.ocks.org/mike/shuffle/
@@ -34,14 +37,14 @@ describe("shuffle function", function() {
     it('returns the array shuffled in place', function() {
         //What does 'in place' mean?
         //It means that you are modifying the original array, not making a new array.
-        var unshuffledArray = [20,50,70]
+        var unshuffledArray = [20, 50, 70]
         var shuffledArray = shuffle(unshuffledArray);
         expect(shuffledArray.length).toEqual(3);
-        expect(shuffledArray === shuffledArray).toEqual(true);
+        //expect(shuffledArray === shuffledArray).toEqual(true); // this is a pointless test
     })
 });
 
-describe("Game class", function() {
+describe('Game class', function() {
     var game;
 
     beforeEach(function() {
@@ -63,7 +66,7 @@ describe("Game class", function() {
         expect(typeof game.winningNumber).toEqual('number');
     });
 
-    describe("Methods on the Game Constructor Function's `.prototype`", function() {
+    describe('Methods on the Game Constructor Function`s `.prototype`', function() {
 
         describe('difference function', function() {
             it('returns the absolute value of the difference between the playersGuess and winningNumber', function() {
@@ -73,20 +76,20 @@ describe("Game class", function() {
                 game.winningNumber = 30;
                 expect(game.difference()).toEqual(10);
             })
-            
+
         });
 
         describe('isLower function', function() {
             it('returns true if the playersGuess is lower than winningNumber, and false if not.', function() {
                 game.playersGuess = 20;
-                game.winningNumber = 10; 
+                game.winningNumber = 10;
                 expect(game.isLower()).toEqual(false);
                 game.winningNumber = 30;
                 expect(game.isLower()).toEqual(true);
             })
         });
-        
-        describe("playersGuessSubmission function", function() {
+
+        describe('playersGuessSubmission function', function() {
             it('takes a number as an argument and sets that as playersGuess', function() {
                 game.playersGuessSubmission(42);
                 expect(game.playersGuess).toEqual(42);
@@ -94,26 +97,26 @@ describe("Game class", function() {
             it('throws an error if the number is invalid (less than 1, greater than 100, or not a number)', function() {
                 expect(function() {
                     game.playersGuessSubmission(0);
-                }).toThrow("That is an invalid guess.");
+                }).toThrow(new Error('That is an invalid guess.'));
                 expect(function() {
                     game.playersGuessSubmission(-1);
-                }).toThrow("That is an invalid guess.");
+                }).toThrow(new Error('That is an invalid guess.'));
                 expect(function() {
                     game.playersGuessSubmission(101);
-                }).toThrow("That is an invalid guess.");
+                }).toThrow(new Error('That is an invalid guess.'));
                 expect(function() {
-                    game.playersGuessSubmission("not a number");
-                }).toThrow("That is an invalid guess.");
+                    game.playersGuessSubmission('not a number');
+                }).toThrow(new Error('That is an invalid guess.'));
             })
             it('calls checkGuess', function() {
                 spyOn(Game.prototype, 'checkGuess');
                 game.playersGuessSubmission(42);
                 expect(Game.prototype.checkGuess).toHaveBeenCalled();
             })
-            
+
         })
 
-        describe("checkGuess function", function() {
+        describe('checkGuess function', function() {
             it('returns a string', function() {
                 //The last spec specifies that playersGuessSubmission should call checkGuess
                 //playersGuessSubmission should also return that call, so that the return value
@@ -160,7 +163,7 @@ describe("Game class", function() {
                 game.winningNumber = 42;
                 expect(game.playersGuessSubmission(92)).toEqual('You\'re ice cold!');
             });
-            
+
         })
 
         describe('newGame function', function() {
@@ -173,7 +176,7 @@ describe("Game class", function() {
             });
         });
 
-        describe("provideHint function", function() {
+        describe('provideHint function', function() {
             it('generates an array with a length of 3', function() {
                 var hintArray = game.provideHint();
                 expect(hintArray.length).toEqual(3);
