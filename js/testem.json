@@ -1,0 +1,16 @@
+{
+  "framework": "jasmine2",
+  "src_files": [
+    "**/*.js"
+  ],
+  "src_files_ignore": [
+    "node_modules/**/*",
+    "gulpfile.js"
+  ],
+  "launch_in_dev": [
+    "Firefox"
+  ],
+  "css_files": [
+    "testem-jasmine.css"
+  ]
+}
