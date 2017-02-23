@@ -108,6 +108,7 @@ function hintHiOrLo(game) {
   } else {
     $('#subtitle').text('Guess lower next time');
   }
+  $('#player-input').focus();
 }
 
 function handleSubmit(game) {
