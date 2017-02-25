@@ -1,7 +1,9 @@
 /* eslint-disable id-length, no-unused-vars, no-lonely-if */
 
-function generateWinningNumber(start = 0, ulimit = 100) {
-  return start + Math.floor(ulimit * Math.random() + 1);
+function generateWinningNumber(start, ulimit) {
+  if (isNaN(start)) start = 0;
+  if (isNaN(ulimit)) ulimit = 100 - start;
+  return Math.floor( parseInt(ulimit, 10) * Math.random() + 1) + parseInt(start, 10);
 }
 
 function shuffle(array) {
@@ -90,23 +92,35 @@ Game.prototype.checkGuess = function() {
 Game.prototype.provideHint = function() {
   let hint = [];
   hint.push(this.winningNumber);
-  let limit = this.pastGuesses.reduce((acc, cVal) => {
-    if (this.isLower()) {
-      if (cVal > acc && cVal !== this.playersGuess) return cVal;
-    } else {
-      if (cVal < acc && cVal !== this.playersGuess) return cVal;
-    }
-  }, 0);
+  let num = -1;
+  let count = 0;
 
-  while (hint.length < 3) {
-    if (this.isLower()) {
-      hint.push(generateWinningNumber(limit, this.playersGuess));
-    } else {
-      hint.push(generateWinningNumber(this.playersGuess, limit));
+  if (this.pastGuesses.length === 0) {
+    while (hint.length < 3) {
+      num = generateWinningNumber();
+      if (hint.indexOf(num) === -1) hint.push(num);
+      if (count++ > 10) break;
+    }
+
+  } else {
+    let arr = Array.from(this.pastGuesses);
+    arr.push(1);
+    arr.push(100);
+    arr.push(this.winningNumber);
+    arr.sort(function(a, b) {
+      return a - b;
+    });
+    let index = arr.indexOf(this.winningNumber);
+
+    let hi = arr[Math.min(index + 1, arr.length - 1)];
+    let lo = arr[Math.max(index - 1, 0)];
+
+    while (hint.length < 3) {
+      num = generateWinningNumber(lo, hi - lo);
+      if (hint.indexOf(num) === -1) { hint.push(num); }
+      if (count++ > 10) break;
     }
   }
-  //hint.push(generateWinningNumber());
-  //hint.push(generateWinningNumber());
   return shuffle(hint);
 }
 

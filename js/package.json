@@ -1,0 +1,15 @@
+{
+  "name": "js",
+  "version": "0.1.0",
+  "description": "In this section of the Guessing Game Project, you will be using Test Driven development to build out the functions that you'll need for the functionality of your Guessing Game.",
+  "main": "GuessingGame_spec.js",
+  "scripts": {
+    "test": "./node_modules/jasmine/bin/jasmine.js"
+  },
+  "keywords": [],
+  "author": "Antonios Hadjigeorgalis <Antonios@Hadji.co> (https://antonioshadji.github.io/)",
+  "license": "MIT",
+  "devDependencies": {
+    "jasmine": "2.5.3"
+  }
+}

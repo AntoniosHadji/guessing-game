@@ -40,7 +40,6 @@ describe('shuffle function', function() {
     var unshuffledArray = [20, 50, 70]
       var shuffledArray = shuffle(unshuffledArray);
     expect(shuffledArray.length).toEqual(3);
-    //expect(shuffledArray === shuffledArray).toEqual(true); // this is a pointless test
   })
 });
 
@@ -181,6 +180,12 @@ describe('Game class', function() {
         var hintArray = game.provideHint();
         expect(hintArray.length).toEqual(3);
       });
+      it('generates an array with a length of 3 after 2 guesses are submited', function() {
+        game.playersGuessSubmission(Math.floor(100 * Math.random() + 1));
+        game.playersGuessSubmission(Math.floor(100 * Math.random() + 1));
+        var hintArray = game.provideHint();
+        expect(hintArray.length).toEqual(3);
+      });
       it('includes the winningNumber', function() {
         var hintArray = game.provideHint();
         expect(hintArray.indexOf(game.winningNumber)).toBeGreaterThan(-1);
@@ -188,7 +193,7 @@ describe('Game class', function() {
       it('calls generateWinningNumber to fill the rest of the hint array with random numbers', function() {
         spyOn(window, 'generateWinningNumber');
         game.provideHint();
-        expect(generateWinningNumber.calls.count()).toEqual(2);
+        expect(generateWinningNumber.calls.count()).toBeGreaterThan(1);
       })
       it('calls the shuffle function', function() {
         spyOn(window, 'shuffle');

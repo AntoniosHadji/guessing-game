@@ -10,7 +10,6 @@
   "launch_in_dev": [
     "Firefox"
   ],
-  "test_page": "testem.mustache",
   "css_files": [
     "testem-jasmine.css"
   ]
