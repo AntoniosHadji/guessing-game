@@ -50,21 +50,21 @@ Game.prototype.playersGuessSubmission = function(num) {
 }
 
 Game.prototype.checkGuess = function() {
-  if (this.winningNumber === this.playersGuess) {
-    timeToReset();
-    return 'You Win!';
-  }
   let index = this.pastGuesses.indexOf(this.playersGuess);
   if (index !== -1) {
     return 'You have already guessed that number.';
   }
-  // did not win and did not repeat guess, add to list
+  // did not repeat guess, add to list
   this.pastGuesses.push(this.playersGuess);
   // populate guess list
   index = this.pastGuesses.length;
   let selector = `ul li:nth-child(${index})`;
   $(selector).text(this.playersGuess);
 
+  if (this.winningNumber === this.playersGuess) {
+    timeToReset();
+    return 'You Win!';
+  }
   if (this.pastGuesses.length === 5) {
     timeToReset();
     return 'You Lose.';
