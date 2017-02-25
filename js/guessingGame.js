@@ -1,4 +1,4 @@
-/* eslint-disable id-length, no-unused-vars */
+/* eslint-disable id-length, no-unused-vars, no-lonely-if */
 
 function generateWinningNumber(start = 0, ulimit = 100) {
   return start + Math.floor(ulimit * Math.random() + 1);
@@ -90,8 +90,23 @@ Game.prototype.checkGuess = function() {
 Game.prototype.provideHint = function() {
   let hint = [];
   hint.push(this.winningNumber);
-  hint.push(generateWinningNumber());
-  hint.push(generateWinningNumber());
+  let limit = this.pastGuesses.reduce((acc, cVal) => {
+    if (this.isLower()) {
+      if (cVal > acc && cVal !== this.playersGuess) return cVal;
+    } else {
+      if (cVal < acc && cVal !== this.playersGuess) return cVal;
+    }
+  }, 0);
+
+  while (hint.length < 3) {
+    if (this.isLower()) {
+      hint.push(generateWinningNumber(limit, this.playersGuess));
+    } else {
+      hint.push(generateWinningNumber(this.playersGuess, limit));
+    }
+  }
+  //hint.push(generateWinningNumber());
+  //hint.push(generateWinningNumber());
   return shuffle(hint);
 }
 
