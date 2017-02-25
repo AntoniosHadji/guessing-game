@@ -1,7 +1,7 @@
 /* eslint-disable id-length, no-unused-vars */
 
-function generateWinningNumber() {
-  return Math.floor(100 * Math.random() + 1);
+function generateWinningNumber(start = 0, ulimit = 100) {
+  return start + Math.floor(ulimit * Math.random() + 1);
 }
 
 function shuffle(array) {
