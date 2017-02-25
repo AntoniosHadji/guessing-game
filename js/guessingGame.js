@@ -99,6 +99,7 @@ Game.prototype.provideHint = function() {
     while (hint.length < 3) {
       num = generateWinningNumber();
       if (hint.indexOf(num) === -1) hint.push(num);
+      // tests break without this, app seems to work
       if (count++ > 10) break;
     }
 
@@ -118,6 +119,7 @@ Game.prototype.provideHint = function() {
     while (hint.length < 3) {
       num = generateWinningNumber(lo, hi - lo);
       if (hint.indexOf(num) === -1) { hint.push(num); }
+      // for extra safety, seems to work without this
       if (count++ > 10) break;
     }
   }
@@ -144,14 +146,12 @@ function handleSubmit(game) {
   // + makes the guess a number instead of text
   // another option parseInt(guess, 10)
   var guess = +$('#player-input').val();
-  console.log(guess);
 
   $('#player-input').val('');
   $('#player-input').focus();
   var response = game.playersGuessSubmission(guess);
   $('#title').text(response);
 
-  console.log(response);
 }
 
 function handleReset() {
@@ -170,7 +170,6 @@ function handleHint(game) {
 }
 
 $(document).ready(function() {
-  console.log('ready');
 
   var game = newGame();
 
