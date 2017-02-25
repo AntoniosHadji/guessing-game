@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+  <title>Test'em</title>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jasmine/2.5.2/jasmine.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jasmine/2.5.2/jasmine-html.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jasmine/2.5.2/boot.js"></script>
+  <script src="/testem.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous">
+  </script>
+
+  {{#scripts}}<script src="{{{src}}}"{{#attrs}} {{&.}}{{/attrs}}></script>{{/scripts}}
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasmine/2.5.2/jasmine.css">
+
+  {{#styles}}<link rel="stylesheet" href="{{.}}">{{/styles}}
+  <!-- dynamic substitution -->
+  {{#serve_files}}
+  <script src="{{src}}"></script>
+  {{/serve_files}}
+
+  {{#css_files}}
+  <link rel="stylesheet" href="{{src}}">
+  {{/css_files}}
+</head>
+<body>
+  <div id="jasmine_content"></div>
+</body>
+</html>
